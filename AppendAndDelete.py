@@ -3,8 +3,9 @@ Created on Dec 20, 2016
 
 @author: vbera
 '''
+import sys
 
-def findSteps(a, b):
+def findMinSteps(a, b):
     i = 0
     while (i < len(a) and i < len(b)) and a[i] == b[i]:
         i += 1
@@ -16,13 +17,15 @@ s = input().strip()
 t = input().strip()
 k = int(input().strip())
 
-answer = 0
-if len(s) >= len(t) :
-    answer = findSteps(s, t)
+minSteps = findMinSteps(s, t)
+if minSteps == 0 and k >= len(t) * 2:
+    print('Yes')
+elif k == minSteps:
+    print('Yes')
+elif k > minSteps:
+    if k - minSteps % 2 == 0:
+        print('Yes')
+    else:
+        print('No')
 else:
-    answer = 0
-
-if answer <= k:
-    print('YES')
-else:
-    print('NO')
+    print('No')
